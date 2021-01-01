@@ -60,47 +60,44 @@ class MinMaxStack {
 
 
   //Solution 2:
-
   class MinMaxStack {
-	
-	constructor(){
-		this.stack = [];
-		this.minMax = [];
-	}
-  peek() {
-	return this.stack[this.stack.length - 1];
-  }
-
-  pop() {
-    this.minMax.pop()
-    return this.stack.pop();
-  }
-
-  push(number) {
-    
-    let currentMinMax = {
-        min: number,
-        max: number
+    constructor() {
+      this.stack = [];
+      this.minMax = [];
     }
-    // if statement in JavaScript returns true for any number greater (or less) than zero, and false for 0
-    //this mean if minMax has something
-    if(this.minMax.length){
-        let lastMinMax = this.minMax[this.minMax.length - 1]
-        
-        currentMinMax.min = currentMinMax.min < lastMinMax.min? currentMinMax.min : lastMinMax.min;
-        currentMinMax.max = currentMinMax.max > lastMinMax.max? currentMinMax.max : lastMinMax.max;			
+    peek() {
+      return this.stack[this.stack.length - 1];
     }
+  
+    pop() {
+      this.minMax.pop()
+      return this.stack.pop();
+    }
+  
+    push(number) {
+        let currentMinMax = {
+            min: number,
+            max: number
+        }
+        // if statement in JavaScript returns true for any number greater (or less) than zero, and false for 0
+        //this mean if minMax has something
+        if(this.minMax.length){
+            let lastMinMax = this.minMax[this.minMax.length - 1]
+            
+            currentMinMax.min = currentMinMax.min < lastMinMax.min? currentMinMax.min : lastMinMax.min;
+            currentMinMax.max = currentMinMax.max > lastMinMax.max? currentMinMax.max : lastMinMax.max;			
+        }
 
-    this.minMax.push(currentMinMax);
-    this.stack.push(number);
-  }
-
-  getMin() {
-	 return	this.minMax[this.minMax.length - 1].min;
-  }
-
-  getMax() {
-    return this.minMax[this.minMax.length - 1].max;
-  }
+        this.minMax.push(currentMinMax);
+        this.stack.push(number);
+    }
+  
+    getMin() {
+      return this.minMax[this.minMax.length - 1].min;
+    }
+  
+    getMax() {
+      return this.minMax[this.minMax.length - 1].max;
+    }
 }
-
+  
