@@ -8,25 +8,26 @@
  You can assume that there will be at most one pair of numbers summing up to the target sum.
 */
 
-//solution 1: This solution is only for sorted array(leetcode question) but this question is not sorted array
-// [2,7,11,15]
-//  l      R
-var twoSum = function(numbers, target) {
-    leftPointer = 0;
-    rightPointer = numbers.length - 1;
+//solution 1: Assuming it is a sorted array(leetcode question) O(nlog(n)) time | O(n) space
 
-    while( leftPointer <=  rightPointer){
-        let sum = numbers[ leftPointer] + numbers[ rightPointer]
-        if(sum === target){
-            return [ leftPointer + 1,  rightPointer + 1]
-        } else if( sum < target){
-             leftPointer++;
-        } else{
-             rightPointer--;
-        }
-    }
-    return null;
-};
+function twoNumberSum(array, targetSum) {
+    // sort the array first
+    array.sort((a, b) => a - b);
+    leftPointer = 0;
+    rightPointer = array.length - 1;
+  
+      while(leftPointer <=  rightPointer){
+          let sum = array[leftPointer] + array[rightPointer]
+          if(sum === targetSum){
+              return [array[leftPointer],  array[rightPointer]]
+          } else if(sum < targetSum){
+               leftPointer++;
+          } else{
+               rightPointer--;
+          }
+      }
+      return [];
+}
 
 
 //solution 2: This solution is based on distinct array (not sorted array) using two for loops
@@ -50,4 +51,6 @@ function twoNumberSum(array, targetSum) {
 }
 
 
-//solution 3: 
+//solution 3: using hash table O(n) time | O(n) space
+
+
