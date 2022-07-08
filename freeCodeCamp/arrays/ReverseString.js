@@ -31,7 +31,16 @@ function reverseString(str) {
 function reverseString(str) {
   //base case
   if (str.length === 1) return str;
+  //if(str == "") return str (extra few lines)
 
   //recursive call
   return reverseString(str.slice(1)) + str[0];
+
+  //if str = "hello"
+  //last call stack when str.length 1, "o" ==> str[0] == o,
+  //second last call stack str "ol"==> str[0] == l,
+  //third last call stack  str "llo" ==> str[0] == l,
+  //fourth last call stack str "ello" ==> str[0] == e,
+  //top most on call stack str "hello" ==> str[0] == h,
+  //return value str[0] added total recursively ==> hello
 }
