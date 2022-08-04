@@ -30,7 +30,9 @@ steps:
 
 */
 
-//Solution 1: Memoization
+//Solution 1:
+
+//This solution keep track of all computed value in an array
 var rob = function (nums) {
   if (nums.length === 0 || null) {
     return nums[0];
@@ -55,3 +57,44 @@ var rob = function (nums) {
 
 // Time Complexity: O(N)
 // Space Complexity: O(1)
+
+//Solution: 2, we just need last two number to keep in our result array, and return the greater which would be in right side -> r[1]
+
+//Steps:
+/*
+1. if given array is null return 0
+2. if given array has one number return that number
+3. declare empty array to sotre two value at all time,
+4. for o index of result array, assign to nums[0]
+5. for 1st index we need to assign max between two nums index
+6. loop through 2nd index num to nums.length 
+7. store left value (which is r[0]) of result array so that we can add it current value later on
+8. update r[0] with the right value( which is r[1])
+9. update r[1] with the Max value between left + currentNum & r[0]
+10 return r[1] which will be the greater value in our result array.
+
+
+//this solution always has two number in our array but keep updating as it traverse through the rest of the nums elements. 
+
+*/
+var rob = function (nums) {
+  if (!nums) {
+    return 0;
+  }
+
+  if (nums.length === 1) {
+    return nums[0];
+  }
+
+  let r = [];
+  r[0] = nums[0];
+  r[1] = Math.max(nums[1], nums[0]);
+
+  for (let i = 2; i < nums.length; i++) {
+    let left = r[0];
+    r[0] = r[1];
+    r[1] = Math.max(left + nums[i], r[1]);
+  }
+
+  return r[1];
+};
